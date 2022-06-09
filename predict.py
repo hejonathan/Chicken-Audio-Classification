@@ -46,6 +46,8 @@ def make_prediction(args):
         y_pred = np.argmax(y_mean)
         real_class = os.path.dirname(wav_fn).split('/')[-1]
         print('Actual class: {}, Predicted class: {}'.format(real_class, classes[y_pred]))
+        if real_class != classes[y_pred]:
+          print(wav_fn)
         results.append(y_mean)
 
     np.save(os.path.join('logs', args.pred_fn), np.array(results))
