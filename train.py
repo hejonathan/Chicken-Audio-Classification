@@ -99,7 +99,7 @@ def train(args):
                          mode='auto', save_freq='epoch', verbose=1)
     csv_logger = CSVLogger(csv_path, append=False)
     model.fit(tg, validation_data=vg,
-              epochs=30, verbose=1,
+              epochs=args.epochs, verbose=1,
               callbacks=[csv_logger, cp])
 
 if __name__ == '__main__':
@@ -115,6 +115,8 @@ if __name__ == '__main__':
                         help='time in seconds to sample audio')
     parser.add_argument('--sample_rate', '-sr', type=int, default=16000,
                         help='sample rate of clean audio')
+    parser.add_argument('--epochs', '-e', type=int, default=50,
+                        help='the number of epochs')
     args, _ = parser.parse_known_args()
 
     train(args)

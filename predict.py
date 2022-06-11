@@ -8,6 +8,7 @@ import argparse
 import os
 import pandas as pd
 from tqdm import tqdm
+import matplotlib.pyplot as plt
 
 
 def make_prediction(args):
@@ -29,6 +30,7 @@ def make_prediction(args):
         rate, wav = downsample_mono(wav_fn, args.sr)
         mask, env = envelope(wav, rate, threshold=args.threshold)
         clean_wav = wav[mask]
+        plt.show(clean_wav)
         step = int(args.sr*args.dt)
         batch = []
 
